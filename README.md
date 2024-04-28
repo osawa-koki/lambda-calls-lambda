@@ -44,7 +44,7 @@ sam --version
 サーバサイドアプリケーションを開発用に実行するためには、以下のコマンドを実行します。  
 
 ```shell
-sam build
+sam build --use-container
 sam local start-api
 ```
 
@@ -65,6 +65,6 @@ sam local start-api
 手動でデプロイする場合は、以下のコマンドを実行してください。  
 
 ```shell
-sam build
+sam build --use-container
 sam deploy --stack-name <スタック名>
 ```
