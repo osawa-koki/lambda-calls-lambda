@@ -14,8 +14,8 @@
     "test:unit": "mocha ./tests/unit/",
     "test:intg": "mocha ./tests/intg/",
     "test": "yarn test:unit && yarn test:intg",
-    "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
@@ -28,7 +28,13 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.1.1",
+    "@types/chai": "^4.3.14",
+    "@types/mocha": "^10.0.6",
     "chai": "^4.3.6",
-    "mocha": "^10.2.0"
+    "eslint": "^9.1.1",
+    "globals": "^15.1.0",
+    "mocha": "^10.2.0",
+    "typescript-eslint": "^7.8.0"
   }
 }
