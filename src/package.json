@@ -1,16 +1,31 @@
 {
-  "name": "hello_world",
+  "name": "lambda-calls-lambda",
   "version": "1.0.0",
-  "description": "hello world sample for NodeJS",
-  "main": "app.js",
-  "repository": "https://github.com/awslabs/aws-sam-cli/tree/develop/samcli/local/init/templates/cookiecutter-aws-sam-hello-nodejs",
+  "description": "🛹🛹🛹 Lambdaで別のLambdaを呼び出してみる！",
+  "main": "./app.ts",
+  "repository": "https://github.com/osawa-koki/lambda-calls-lambda/tree/main/src",
   "author": "SAM CLI",
-  "license": "MIT",
-  "dependencies": {
-    "axios": ">=1.6.0"
-  },
+  "license": "Apache-2.0",
   "scripts": {
-    "test": "mocha tests/unit/"
+    "build": "esbuild ./app.ts --bundle --platform=node --target=node18 --outfile=./app.js",
+    "build:test:unit": "esbuild ./tests/unit/*.ts --bundle --platform=node --target=node18 --outfile=./tests/unit/index.js",
+    "build:test:intg": "esbuild ./tests/intg/*.ts --bundle --platform=node --target=node18 --outfile=./tests/intg/index.js",
+    "build:test": "yarn build:test:unit && yarn build:test:intg",
+    "test:unit": "mocha ./tests/unit/",
+    "test:intg": "mocha ./tests/intg/",
+    "test": "yarn test:unit && yarn test:intg",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@types/aws-lambda": "^8.10.137",
+    "@types/uuid": "^9.0.8",
+    "aws-lambda": "^1.0.7",
+    "axios": ">=1.6.0",
+    "esbuild": "^0.20.2",
+    "typescript": "^5.4.5",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "chai": "^4.3.6",
