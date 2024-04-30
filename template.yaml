@@ -35,6 +35,19 @@ Resources:
       DockerTag: nodejs20.x-v1
       DockerContext: ./src/
       Dockerfile: Dockerfile
+  AddFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-add"
+      PackageType: Image
+      ImageConfig:
+        Command: [ "app.addHandler" ]
+      Architectures:
+        - x86_64
+    Metadata:
+      DockerTag: nodejs20.x-v1
+      DockerContext: ./src/
+      Dockerfile: Dockerfile
 
   ApplicationResourceGroup:
     Type: AWS::ResourceGroups::Group

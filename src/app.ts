@@ -17,3 +17,15 @@ export const lambdaHandler: APIGatewayProxyHandler = async (event: APIGatewayEve
     })
   }
 }
+
+export const addHandler: APIGatewayProxyHandler = async (event: APIGatewayEvent, context: Context): Promise<APIGatewayProxyResult> => {
+  return {
+    statusCode: 200,
+    body: JSON.stringify({
+      message: 'add world',
+      event,
+      context,
+      uuid: getUuid()
+    })
+  }
+}
