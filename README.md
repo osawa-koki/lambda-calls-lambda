@@ -68,3 +68,9 @@ sam local start-api
 sam build --use-container
 sam deploy --stack-name <スタック名>
 ```
+
+各種出力データを確認するためには、以下のコマンドを実行してください。  
+
+```shell
+aws cloudformation describe-stacks --stack-name <スタック名> --query 'Stacks[].Outputs'
+```
