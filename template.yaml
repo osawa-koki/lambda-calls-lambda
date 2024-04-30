@@ -19,6 +19,7 @@ Resources:
   PingFunction:
     Type: AWS::Serverless::Function
     Properties:
+      FunctionName: !Sub "${AWS::StackName}-ping"
       PackageType: Image
       ImageConfig:
         Command: [ "app.lambdaHandler" ]
