@@ -20,6 +20,8 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       PackageType: Image
+      ImageConfig:
+        Command: [ "app.lambdaHandler" ]
       Architectures:
         - x86_64
       Events:

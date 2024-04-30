@@ -7,9 +7,9 @@
   "author": "SAM CLI",
   "license": "Apache-2.0",
   "scripts": {
-    "build": "esbuild ./app.ts --bundle --platform=node --target=node18 --outfile=./app.js",
-    "build:test:unit": "esbuild ./tests/unit/*.ts --bundle --platform=node --target=node18 --outfile=./tests/unit/index.js",
-    "build:test:intg": "esbuild ./tests/intg/*.ts --bundle --platform=node --target=node18 --outfile=./tests/intg/index.js",
+    "build": "esbuild ./app.ts --bundle --platform=node --target=node20 --outfile=./app.js",
+    "build:test:unit": "esbuild ./tests/unit/*.ts --bundle --platform=node --target=node20 --outfile=./tests/unit/index.js",
+    "build:test:intg": "esbuild ./tests/intg/*.ts --bundle --platform=node --target=node20 --outfile=./tests/intg/index.js",
     "build:test": "yarn build:test:unit && yarn build:test:intg",
     "test:unit": "mocha ./tests/unit/",
     "test:intg": "mocha ./tests/intg/",
