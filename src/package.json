@@ -6,6 +6,10 @@
   "repository": "https://github.com/osawa-koki/lambda-calls-lambda/tree/main/src",
   "author": "SAM CLI",
   "license": "Apache-2.0",
+  "engines": {
+    "node": ">=20.0.0",
+    "yarn": ">=1.22.0"
+  },
   "scripts": {
     "build": "esbuild ./app.ts --bundle --platform=node --target=node20 --outfile=./app.js",
     "build:test:unit": "esbuild ./tests/unit/*.ts --bundle --platform=node --target=node20 --outfile=./tests/unit/index.js",
