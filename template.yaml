@@ -16,6 +16,26 @@ Globals:
     TracingEnabled: true
 
 Resources:
+  LambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: AllowLambdaToInvokeLambda
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - lambda:InvokeFunction
+                Resource: !GetAtt AddFunction.Arn
+
   PingFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -25,12 +45,26 @@ Resources:
         Command: [ "app.lambdaHandler" ]
       Architectures:
         - x86_64
+      Role: !GetAtt LambdaRole.Arn
       Events:
         Ping:
           Type: Api
           Properties:
             Path: /hello
             Method: get
+    Metadata:
+      DockerTag: nodejs20.x-v1
+      DockerContext: ./src/
+      Dockerfile: Dockerfile
+  AddFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-add"
+      PackageType: Image
+      ImageConfig:
+        Command: [ "app.addHandler" ]
+      Architectures:
+        - x86_64
     Metadata:
       DockerTag: nodejs20.x-v1
       DockerContext: ./src/
@@ -58,6 +92,9 @@ Outputs:
   PingFunction:
     Description: Hello World Lambda Function ARN
     Value: !GetAtt PingFunction.Arn
-  PingFunctionIamRole:
-    Description: Implicit IAM Role created for Hello World function
-    Value: !GetAtt PingFunctionRole.Arn
+  PingFunctionName:
+    Description: Hello World Lambda Function Name
+    Value: !Ref PingFunction
+  AddFunctionName:
+    Description: Add Lambda Function Name
+    Value: !Ref AddFunction

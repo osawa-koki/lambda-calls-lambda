@@ -7,9 +7,9 @@
   "author": "SAM CLI",
   "license": "Apache-2.0",
   "scripts": {
-    "build": "esbuild ./app.ts --bundle --platform=node --target=node20 --outfile=./app.js",
-    "build:test:unit": "esbuild ./tests/unit/*.ts --bundle --platform=node --target=node20 --outfile=./tests/unit/index.js",
-    "build:test:intg": "esbuild ./tests/intg/*.ts --bundle --platform=node --target=node20 --outfile=./tests/intg/index.js",
+    "build": "esbuild ./app.ts --bundle --platform=node --target=node20 --packages=external --outfile=./app.js",
+    "build:test:unit": "esbuild ./tests/unit/*.ts --bundle --platform=node --target=node20 --packages=external  --outfile=./tests/unit/index.js",
+    "build:test:intg": "esbuild ./tests/intg/*.ts --bundle --platform=node --target=node20 --packages=external  --outfile=./tests/intg/index.js",
     "build:test": "yarn build:test:unit && yarn build:test:intg",
     "test:unit": "mocha ./tests/unit/",
     "test:intg": "mocha ./tests/intg/",
@@ -19,10 +19,13 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@aws-sdk/client-lambda": "^3.565.0",
     "@types/aws-lambda": "^8.10.137",
+    "@types/node": "^20.12.8",
     "@types/uuid": "^9.0.8",
     "aws-lambda": "^1.0.7",
     "axios": ">=1.6.0",
+    "dotenv": "^16.4.5",
     "esbuild": "^0.20.2",
     "typescript": "^5.4.5",
     "uuid": "^9.0.1"
