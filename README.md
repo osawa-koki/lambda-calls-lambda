@@ -74,3 +74,9 @@ sam deploy --stack-name <スタック名>
 ```shell
 aws cloudformation describe-stacks --stack-name <スタック名> --query 'Stacks[].Outputs'
 ```
+
+Lambda関数を呼び出すには、以下のコマンドを実行してください。  
+
+```shell
+aws lambda invoke --function-name $(aws cloudformation describe-stacks --stack-name <スタック名> --query 'Stacks[].Outputs[?OutputKey==`PingFunctionName`].OutputValue' --output text) --payload '{}' response.json
+```

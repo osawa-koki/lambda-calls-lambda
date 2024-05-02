@@ -92,6 +92,9 @@ Outputs:
   PingFunction:
     Description: Hello World Lambda Function ARN
     Value: !GetAtt PingFunction.Arn
+  PingFunctionName:
+    Description: Hello World Lambda Function Name
+    Value: !Ref PingFunction
   AddFunctionName:
     Description: Add Lambda Function Name
     Value: !Ref AddFunction

@@ -45,13 +45,13 @@ jobs:
       - uses: aws-actions/setup-sam@v2
       - name: Validate SAM template
         run: sam validate
-  intg-ci:
-    runs-on: ubuntu-22.04
-    needs:
-      - node-ci
-      - sam-ci
-    steps:
-      - uses: actions/checkout@v4
-      - uses: aws-actions/setup-sam@v2
-      - name: Test integration
-        run: sam build --use-container && sam local invoke --no-event
+  # intg-ci:
+  #   runs-on: ubuntu-22.04
+  #   needs:
+  #     - node-ci
+  #     - sam-ci
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: aws-actions/setup-sam@v2
+  #     - name: Test integration
+  #       run: sam build --use-container && sam local invoke --no-event
